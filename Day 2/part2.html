@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Event Selector!</h1>
+    <p id="demo"></p>
+    
+    <p class="demo1"></p>
+
+    <h1>Second H1 Tag</h1>
+
+    <div class="classname">Lorem ipsum dolor sit amet.</div>
+
+    <script>
+        document.getElementById('demo').innerHTML = "Hello ID!";
+
+        document.getElementsByClassName('demo1')[0].innerHTML = "Hey Class!";
+
+        document.querySelector('.classname').style.color="red";
+
+        // doument.getElementsByTagName('h1')[0].style.backgroundColor="blue";
+        document.getElementsByTagName('h1')[1].style.backgroundColor = "blue";
+    </script>
+</body>
+</html>

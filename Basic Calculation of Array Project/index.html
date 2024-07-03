@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Array Calculations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Basic Array Calculations</h1>
+    <div class="container">
+        <label for="numbersInput">Enter numbers (comma-separated):</label><br>
+        <input type="text" id="numbersInput" placeholder="e.g., 1, 2, 3, 4"><br>
+        <button onclick="calculate()">Calculate</button><br>
+        <p id="results"></p>
+    </div>
+
+    <script>
+        function calculate() {
+            // Get input value and convert it to an array of numbers
+            const input = document.getElementById('numbersInput').value.trim();
+            if (!input) {
+                alert('Please enter numbers separated by commas.');
+                return;
+            }
+            const numbers = input.split(',').map(num => parseFloat(num.trim()));
+
+            // Calculate sum
+            const sum = numbers.reduce((acc, curr) => acc + curr, 0);
+
+            // Calculate average
+            const average = sum / numbers.length || 0;
+
+            // Find maximum and minimum
+            const max = Math.max(...numbers);
+            const min = Math.min(...numbers);
+
+            // Display results
+            const resultsElement = document.getElementById('results');
+            resultsElement.innerHTML = `
+                <strong>Results:</strong><br>
+                Numbers: [${numbers.join(', ')}]<br>
+                Sum: ${sum}<br>
+                Average: ${average.toFixed(2)}<br>
+                Maximum: ${max}<br>
+                Minimum: ${min}
+            `;
+        }
+    </script>
+</body>
+
+</html>

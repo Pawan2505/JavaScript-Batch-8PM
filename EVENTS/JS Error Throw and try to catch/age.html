@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Error Handling</title>
+</head>
+
+<body>
+    <script>
+        function processAge(age) {
+            if (age < 0) {
+                throw new Error("Age cannot be negative");
+            } else if (age < 18) {
+                throw new Error("Age must be at least 18");
+            }
+            return "Age is valid.";
+        }
+
+        try {
+            console.log(processAge(25));  // Outputs: Age is valid.
+            console.log(processAge(-5));  // Throws an error
+        } catch (e) {
+            console.log("Error: " + e.message);  // Outputs: Error: Age cannot be negative
+        } finally {
+            console.log("Age processing completed.");  // This will always execute
+        }
+    </script>
+</body>
+
+</html>
