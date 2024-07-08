@@ -14,6 +14,7 @@
 // const person3 = {
 //   firstName: "Abhishek",
 //   lastName: "Sir ji",
+//   id: 2,
 // };
 
 // let result = Object.assign(person1, person2, person3);
