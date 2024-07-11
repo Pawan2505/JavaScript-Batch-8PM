@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Exercise</title>
+    <style>
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="itemList">
+        <li class="item">Item 1</li>
+        <li class="item">Item 2</li>
+        <li class="item">Item 3</li>
+    </ul>
+    <button id="highlightButton">Highlight Items</button>
+    <script>
+        let highlightButton = document.querySelector('#highlightButton');
+        highlightButton.addEventListener('click', () => {
+            let items = document.querySelectorAll('.item');
+            items.forEach(item => {
+                item.classList.toggle('highlight');
+            });
+        });
+    </script>
+</body>
+
+</html>

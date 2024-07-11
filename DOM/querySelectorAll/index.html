@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>querySelectorAll</title>
+</head>
+
+<body>
+    <div class="container">
+        <p class="text">First paragraph.</p>
+        <p class="text">Second paragraph.</p>
+    </div>
+    <script>
+        let paragraphs = document.querySelectorAll('.text');
+        paragraphs.forEach(paragraph => {
+            console.log(paragraph.textContent);
+        });
+
+    </script>
+</body>
+
+</html>

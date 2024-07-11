@@ -22,7 +22,7 @@
 </head>
 
 <body>
-    <form id="sign-up" action="" onclick="return validate()" method="post">
+    <form id="sign-up" action="" method="post">
         <fieldset>
             <legend>Sign Up Form</legend>
             <div>
@@ -83,7 +83,7 @@
 
         submitData.addEventListener("click", () => {
 
-            event.preventDefault();
+            event.preventDefault();   // prevent from refress
 
             let name = document.querySelector('#name').value;
             let mobile = document.querySelector('#mobile').value;
@@ -130,10 +130,11 @@
 
             if (mobile == "") {
                 mobile_error.innerHTML = "enter mobile number";
-            } else if (!mobileRegEx.test(mobile)) {
-                mobile_error.innerHTML = "valid mobile format";
-            } else {
+            } else if (mobileRegEx.test(mobile)) {
                 mobile_error.innerHTML = "";
+            } else {
+
+                mobile_error.innerHTML = "valid mobile format";
             }
 
 
@@ -179,7 +180,7 @@
             }
 
             if (confirm_password === "") {
-                confirm_password_error.innerHTML = "Please confirm password";
+                confirm_password_error.innerHTML = "Please enter confirm password";
             } else if (password !== confirm_password) {
                 confirm_password_error.innerHTML = "Passwords do not match";
             } else {
