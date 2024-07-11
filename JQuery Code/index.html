@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="./jquery-3.7.1.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        .box {
+            background-color: cadetblue;
+            color: black;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="btn">Click</button>
+    <button class="btn-add">Add Class</button>
+
+    <p id="para"></p>
+    <script>
+        $(document).ready(function () {
+            $('.btn').click(() => {
+                $('#para').text('This is para');
+                $('#para').css('color', 'red');
+
+            })
+            $('.btn-add').click(() => {
+                $('#para').addClass('box');
+
+            })
+
+        });
+    </script>
+</body>
+
+</html>

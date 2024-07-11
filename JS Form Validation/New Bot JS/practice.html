@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation in Javascript</title>
+    <style>
+        div {
+            margin: 20px;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+
+        .ferror {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="sign-up" action="" onsubmit="return validate()" method="post">
+        <fieldset>
+            <legend>Sign Up Form</legend>
+            <div>
+                <label for="name">Name : </label>
+                <input type="text" id="name" name="name" required>
+                <span class="ferror" id="name-error"></span>
+            </div>
+            <div>
+                <label for="email">Email : </label>
+                <input type="email" id="email" name="email" required>
+                <span class="ferror" id="email-error"></span>
+            </div>
+            <div>
+                <label for="date">DOB : </label>
+                <input type="date" id="date" name="date" required>
+                <span class="ferror" id="date-error"></span>
+            </div>
+            <div>
+                <label for="hobby">Hobby : </label>
+                <input type="text" id="hobby" name="hobby" required>
+                <span class="ferror" id="hobby-error"></span>
+            </div>
+            <div>
+                <label>Gender : </label>
+                <input type="radio" id="gender-male" name="gender" value="male" required> Male
+                <input type="radio" id="gender-female" name="gender" value="female"> Female
+                <input type="radio" id="gender-other" name="gender" value="other"> Other
+                <span class="ferror" id="gender-error"></span>
+            </div>
+            <div>
+                <label for="password">Password : </label>
+                <input type="password" id="password" name="password" required>
+                <span class="ferror" id="password-error"></span>
+            </div>
+            <div>
+                <label for="confirm_password">Confirm Password : </label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
+                <span class="ferror" id="confirm_password-error"></span>
+            </div>
+            <div>
+                <input type="submit" name="submit" value="submit">
+            </div>
+        </fieldset>
+    </form>
+
+    <script>
+        function findError() {
+            let errors = document.getElementsByClassName('ferror');
+
+            for (let item of errors) {
+                item.innerHTML = "";
+            }
+        }
+
+        function validate() {
+            let result = true;
+            findError();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const date = document.getElementById('date').value;
+            const hobby = document.getElementById('hobby').value;
+            const gender = document.querySelector('input[name="gender"]:checked');
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
+
+            if (name === "") {
+                document.getElementById('name-error').innerText = "Name is required.";
+                result = false;
+            }
+
+            if (email === "") {
+                document.getElementById('email-error').innerText = "Email is required.";
+                result = false;
+            }
+
+            if (date === "") {
+                document.getElementById('date-error').innerText = "Date of birth is required.";
+                result = false;
+            }
+
+            if (hobby === "") {
+                document.getElementById('hobby-error').innerText = "Hobby is required.";
+                result = false;
+            }
+
+            if (!gender) {
+                document.getElementById('gender-error').innerText = "Gender is required.";
+                result = false;
+            }
+
+            if (password === "") {
+                document.getElementById('password-error').innerText = "Password is required.";
+                result = false;
+            }
+
+            if (confirmPassword === "") {
+                document.getElementById('confirm_password-error').innerText = "Confirm password is required.";
+                result = false;
+            } else if (password !== confirmPassword) {
+                document.getElementById('confirm_password-error').innerText = "Passwords do not match.";
+                result = false;
+            }
+
+            return result;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation in Javascript</title>
+    <style>
+        div {
+            margin: 20px;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="sign-up" action="" onclick="return validate()" method="post">
+        <fieldset>
+            <legend>Sign Up Form</legend>
+            <div>
+                <label for="name">Name : </label>
+                <input type="text" id="name" name="name">
+                <span id="name_error" class="error"></span>
+            </div>
+            <div>
+                <label for="mobile">Mobile : </label>
+                <input type="text" id="mobile" name="mobile">
+                <span id="mobile_error" class="error"></span>
+            </div>
+            <div>
+                <label for="email">Email : </label>
+                <input type="email" id="email" name="email">
+                <span id="email_error" class="error"></span>
+            </div>
+            <div>
+                <label for="date">DOB : </label>
+                <input type="date" id="date" name="date">
+                <span id="date_error" class="error"></span>
+            </div>
+            <div>
+                <label for="hobby">Hobby : </label>
+                <input type="text" id="hobby" name="hobby">
+                <span id="hobby_error" class="error"></span>
+            </div>
+            <div>
+                <label>Gender : </label>
+                <input type="radio" id="male" name="gender"> Male
+                <input type="radio" id="female" name="gender"> Female
+                <input type="radio" id="other" name="gender"> Other
+                <span id="gender_error" class="error"></span>
+            </div>
+            <div>
+                <label for="password">Password : </label>
+                <input type="password" id="password" name="password">
+                <span id="password_error" class="error"></span>
+            </div>
+            <div>
+                <label for="confirm_password">Confirm Password : </label>
+                <input type="password" id="confirm_password" name="confirm_password">
+                <span id="confirm_password_error" class="error"></span>
+            </div>
+            <div>
+                <input type="submit" id="submitData" name="submit" value="submit">
+            </div>
+        </fieldset>
+    </form>
+
+    <script>
+
+        let stringRegEx = /^[A-Za-z. ]{3,15}$/;
+        let mobileRegEx = /^[6789][0-9]{9}$/;
+        let emailRegEx = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+        let submitData = document.querySelector('#submitData');
+
+        submitData.addEventListener("click", () => {
+
+            event.preventDefault();
+
+            let name = document.querySelector('#name').value;
+            let mobile = document.querySelector('#mobile').value;
+            let email = document.getElementById('email').value;
+            let date = document.getElementById('date').value;
+            let hobby = document.getElementById('hobby').value;
+            let password = document.getElementById('password').value;
+            let confirm_password = document.getElementById('confirm_password').value;
+            let genderChecked = false;
+            let genderInputs = document.getElementsByName('gender');
+            for (let i = 0; i < genderInputs.length; i++) {
+                if (genderInputs[i].checked) {
+                    genderChecked = true;
+                    break;
+                }
+            }
+
+            // Span tag
+
+            let name_error = document.querySelector('#name_error')
+            let mobile_error = document.querySelector('#mobile_error')
+            let email_error = document.getElementById('email_error');
+            let date_error = document.getElementById('date_error');
+            let hobby_error = document.getElementById('hobby_error');
+            let gender_error = document.getElementById('gender_error');
+            let password_error = document.getElementById('password_error');
+            let confirm_password_error = document.getElementById('confirm_password_error');
+
+            if (name == "") {
+                name_error.innerHTML = "Please enter Name!"
+            } else if (!stringRegEx.test(name)) {
+                if (name.length < 3 || name.length > 15) {
+                    name_error.innerHTML = "Your character should between 3 to 15!";
+                } else {
+                    name_error.innerHTML = "Please enter valid formate!"
+                }
+
+            } else {
+                name_error.innerHTML = "";
+            }
+
+
+            // Mobile
+
+            if (mobile == "") {
+                mobile_error.innerHTML = "enter mobile number";
+            } else if (!mobileRegEx.test(mobile)) {
+                mobile_error.innerHTML = "valid mobile format";
+            } else {
+                mobile_error.innerHTML = "";
+            }
+
+
+
+            // Email
+
+            if (email === "") {
+                email_error.innerHTML = "Please enter email address";
+            } else if (!emailRegEx.test(email)) {
+                email_error.innerHTML = "Please enter a valid email address";
+            } else {
+                email_error.innerHTML = "";
+            }
+
+
+            if (date === "") {
+                date_error.innerHTML = "Please enter Date of Birth";
+            } else {
+                date_error.innerHTML = "";
+
+            }
+
+
+            if (hobby === "") {
+                hobby_error.innerHTML = "Please enter your hobby";
+            } else {
+                hobby_error.innerHTML = "";
+            }
+
+            if (!genderChecked) {
+                gender_error.innerHTML = "Please select your gender";
+            } else {
+                gender_error.innerHTML = "";
+            }
+
+
+            if (password === "") {
+                password_error.innerHTML = "Please enter password";
+            } else if (password.length < 8) {
+                password_error.innerHTML = "Password must be at least 8 characters long";
+            } else {
+                password_error.innerHTML = "";
+            }
+
+            if (confirm_password === "") {
+                confirm_password_error.innerHTML = "Please confirm password";
+            } else if (password !== confirm_password) {
+                confirm_password_error.innerHTML = "Passwords do not match";
+            } else {
+                confirm_password_error.innerHTML = "";
+            }
+
+        })
+
+    </script>
+</body>
+
+</html>

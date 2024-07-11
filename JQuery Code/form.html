@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <script src="./jquery-3.7.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/additional-methods.min.js"></script>
+    <style>
+        .sign {
+            display: inline-block;
+            width: 100px;
+        }
+
+        input {
+            width: 200px;
+        }
+
+        div {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="sign-up-form" action="">
+        <fieldset>
+            <legend>Sign-Up</legend>
+            <div>
+                <label for="name" class="sign">Name :</label>
+                <input type="text" id="name" name="name">
+                
+            </div>
+            <div>
+                <label for="email" class="sign">Email :</label>
+                <input type="email" id="email" name="email">
+            </div>
+            <div>
+                <label for="password" class="sign">Password :</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <div>
+                <label for="confirm_password" class="sign">Confirm Password :</label>
+                <input type="password" id="confirm_password" name="confirm_password">
+            </div>
+            <div>
+                <input type="submit" value="submit">
+            </div>
+        </fieldset>
+    </form>
+
+    <script>
+        $(document).ready(function () {
+            $('#sign-up-form').validate({
+                rules: {
+                    name: "required",
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    password: {
+                        required: true,
+                        minlength: 8
+                    },
+                    confirm_password: {
+                        required: true,
+                        minlength: 8,
+                        equalTo: "#password"
+                    }
+                },
+
+                messages: {
+                    name: "Please enter your name.",
+                    email: {
+                        required: "Please enter your email."
+                    },
+                    password: {
+                        required: "Please enter your Password.",
+                        minlength: "Please enter 8 length password"
+                    },
+                    confirm_password: {
+                        required: "Please enter your Password.",
+                        minlength: "Please enter 8 length password",
+                        equalTo: "Please enter same password as above"
+                    }
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

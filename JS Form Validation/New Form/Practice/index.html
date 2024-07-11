@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Form Validate</title>
+    <style>
+        .sign-form {
+            display: inline-block;
+            width: 200px;
+        }
+
+        .box {
+            margin: 10px;
+        }
+
+        .ferror {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="" name="myForm" onsubmit="return validateForm()">
+        <fieldset>
+            <legend>Student Form</legend>
+            <div class="box">
+                <label for="name" class="sign-form">Name : </label>
+                <input type="text" id="name" name="name" required> <b><span class="ferror"></span></b>
+            </div>
+            <div class="box">
+                <label for="email" class="sign-form">Email : </label>
+                <input type="email" id="email" name="email" required> <b><span class="ferror"></span></b>
+            </div>
+            <div class="box">
+                <label for="phone" class="sign-form">Phone : </label>
+                <input type="tel" id="phone" name="phone" required> <b><span class="ferror"></span></b>
+            </div>
+            <div class="box">
+                <label for="password" class="sign-form">Password : </label>
+                <input type="password" id="password" name="password" required> <b><span class="ferror"></span></b>
+            </div>
+            <div class="box">
+                <label for="confirm_password" class="sign-form">Confirm Password : </label>
+                <input type="password" id="confirm_password" name="confirm_password" required> <b><span
+                        class="ferror"></span></b>
+            </div>
+            <div class="box">
+                <input type="submit" value="submit">
+            </div>
+        </fieldset>
+    </form>
+    <script>
+        function clearErrors() {
+            let errors = document.getElementsByClassName('ferror');
+            for (let item of errors) {
+                item.innerHTML = "";
+            }
+        }
+
+        function seterror(id, error) {
+            let element = document.getElementById(id);
+            element.nextElementSibling.innerHTML = error;
+        }
+
+        function validateForm() {
+            let returnvalidate = true;
+            clearErrors();
+
+            let name = document.forms['myForm']['name'].value;
+
+            if (name.length < 5) {
+                seterror("name", "*Length of name is too short");
+                returnvalidate = false;
+            }
+
+            if (name.length == 0) {
+                seterror("name", "*Length of name cannot be zero!");
+                returnvalidate = false;
+            }
+
+            let email = document.forms['myForm']['email'].value;
+            if (email.length > 15) {
+                seterror("email", "*Email length is too long");
+                returnvalidate = false;
+            }
+
+            let phone = document.forms['myForm']["phone"].value;
+
+            if (phone.length != 10) {
+                seterror("phone", "*Phone number should be 10 digits!");
+                returnvalidate = false;
+            }
+
+            let password = document.forms['myForm']['password'].value;
+
+            if (password.length < 6) {
+                seterror("password", "*Password should be atleast 6 characters long!");
+                returnvalidate = false;
+            }
+
+            let confirm_password = document.forms['myForm']['confirm_password'].value;
+            if (confirm_password != password) {
+                seterror("confirm_password", "*Password and Confirm Password should match!");
+                returnvalidate = false;
+            }
+            return returnvalidate;
+
+        }
+    </script>
+</body>
+
+</html>
