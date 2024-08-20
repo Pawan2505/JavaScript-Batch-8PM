@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const std = {
+            id:1234,
+            name:"jyoti"
+        }
+
+        // JSON -> javascript object notation , string format
+
+        ///* why use JSON *///
+        // js understand obj 
+        // browser understand json format 
+
+        const objToJSON = JSON.stringify(std)
+
+        
+        const JSONToObj = JSON.parse(objToJSON)
+        console.log(std)
+        console.log(objToJSON)
+        console.log(JSONToObj)
+    </script>
+</body>
+</html>

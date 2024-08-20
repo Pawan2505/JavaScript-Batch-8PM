@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            width: 300px;
+            height: 200px;
+            background-color: lightblue;
+            display: none;
+        }
+
+        .main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Page Loading</h1>
+    <p>loading....</p>
+
+    <div class="main">
+        <div id="container">
+            <p>Loded Page</p>
+        </div>
+    </div>
+
+
+    <script>
+        window.addEventListener('load', function () {
+            setTimeout(() => {
+
+                let result = document.getElementById('container');
+                result.style.display = 'block';
+            }, 5000);
+        })
+    </script>
+
+</body>
+
+</html>

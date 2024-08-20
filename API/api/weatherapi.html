@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID-19 Data Table</title>
+    <style>
+        
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body onload="fetchAndDisplayWeatherData()">
+    <div id="cardContainer" style="display: flex;flex-wrap: wrap;"></div>
+
+    <script>
+        async function fetchWeatherData(latitude, longitude) {
+            const url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${latitude}%2C${longitude}`;
+            const options = {
+                method: 'GET',
+                headers: {
+                    'X-RapidAPI-Key': '9df99b8a17msh8888fa7e61fa6d5p193a3ajsn5b3b11a8c9c8',
+                    'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
+                }
+            };
+
+            const response = await fetch(url, options);
+            const result = await response.json();
+            return result;
+        }
+
+        async function fetchAndDisplayWeatherData() {
+            const cardContainer = document.getElementById('cardContainer');
+
+            for (let i = 0; i < 10; i++) {
+                try {
+                    const latitude = getRandomCoordinate(-90, 90);
+                    const longitude = getRandomCoordinate(-180, 180);
+                    const weatherData = await fetchWeatherData(latitude, longitude);
+
+                    const card = createCard(weatherData);
+                    cardContainer.appendChild(card);
+                } catch (error) {
+                    console.error('Error fetching weather data:', error);
+                }
+            }
+        }
+
+        function getRandomCoordinate(min, max) {
+            return (Math.random() * (max - min) + min).toFixed(2);
+        }
+
+        function createCard(weatherData) {
+            const card = document.createElement('div');
+            card.classList.add('card');
+
+            const cityName = document.createElement('h2');
+            cityName.textContent = weatherData.location.name;
+
+            const temperature = document.createElement('p');
+            temperature.textContent = `Temperature: ${weatherData.current.temp_c}°C`;
+
+            const humidity = document.createElement('p');
+            humidity.textContent = `Humidity: ${weatherData.current.humidity}%`;
+
+            const condition = document.createElement('p');
+            condition.textContent = `Condition: ${weatherData.current.condition.text}`;
+
+            card.appendChild(cityName);
+            card.appendChild(temperature);
+            card.appendChild(humidity);
+            card.appendChild(condition);
+
+            return card;
+        }
+    </script>
+</body>
+
+</html>

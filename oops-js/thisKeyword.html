@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class college {
+            // constructor(name,location,email){
+            //     this.clgName = name;
+            //     this.clgAdd = location;
+            //     this.clgEmail = email
+            // }
+            constructor(name,location,email){
+                this.name = name;
+                this.location = location;
+                this.email = email
+            }
+
+            show(){
+                // document.write(`college name = ${this.clgName} <br>`)
+                // document.write(`college address = ${this.clgAdd} <br>`)
+                // document.write(`college email = ${this.clgEmail} <br>`)
+                document.write(`college name = ${this.name} <br>`)
+                document.write(`college address = ${this.location} <br>`)
+                document.write(`college email = ${this.email} <br>`)
+            }
+        }
+
+        const clg1 = new college("LMC","jodhpur","lmc12@gmail.com")
+        clg1.show()
+    </script>
+</body>
+
+</html>

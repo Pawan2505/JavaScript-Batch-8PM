@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // parent-child class
+        // base - derived class
+        class A {
+            show1() {
+                console.log("class A")
+            }
+        }
+
+        class B extends A {
+            constructor() {
+                super()
+                console.log("class B")
+            }
+        }
+        class C extends B {
+            show3() {
+                console.log("class C")
+            }
+        }
+        const c = new C();
+        c.show1()
+        // c.show2()
+        c.show3()
+
+        /// answer B,A,C
+    </script>
+</body>
+
+</html>

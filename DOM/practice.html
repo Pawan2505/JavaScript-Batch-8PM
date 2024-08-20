@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Method</title>
+</head>
+
+<body>
+    <h2 id="head-first"></h2>
+    <h2 class="head-second"></h2>
+    <h2 class="head-second"></h2>
+
+
+    <p class="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, dolorum excepturi. Repellendus quam
+        libero in illo veniam, asperiores doloremque labore sint soluta a natus ratione enim. Enim animi sed laudantium.
+    </p>
+    <p class="para">Lorem ipsum dolor soloremque labore sint soluta a natus ratione enim. Enim animi sed laudantium.
+    </p>
+    <p class="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, dolorum excepturi. Repellendus quam
+        libero in illo veniam, asperius ratione enim. Enim animi sed laudantium.
+    </p>
+    <p class="para">lorum excepturi. Repellendus quam
+        libero in illo veniam, asperiores doloremque labore sint soluta a natus ratione enim. Enim animi sed laudantium.
+    </p>
+    <h1 id="heading"></h1>
+    <button class="btn-click">Click Me</button>
+
+    <script>
+
+
+        // ***************************************************************************************************
+
+
+        // document.getElementsByClassName('para')[0].innerHTML = "Hello Bhai";
+
+
+        // ******************************************************************************************************
+
+
+        // let result = document.getElementsByClassName('para')[3].innerHTML;
+
+        // document.getElementById('heading').innerHTML = result;
+
+        // *************************************************************************************************************************
+
+        // let result = document.getElementsByTagName('p')[1].innerHTML;
+
+        // document.getElementById('heading').innerHTML = result;
+
+
+
+        // ****************************************************************************************************************
+
+
+        // let result = document.querySelector('#head-first').innerHTML = "Heading First";
+        // or
+        // let result = document.querySelector('#head-first');
+
+        // result.innerHTML = "Hello First Heading";
+
+
+        // **********************************************************************************************************************
+
+
+
+        let result = document.querySelectorAll('.head-second');
+
+        result.forEach(
+            (element) => {
+                element.innerHTML = "Hello Second Heading";
+            }
+        )
+
+
+    </script>
+</body>
+
+</html>

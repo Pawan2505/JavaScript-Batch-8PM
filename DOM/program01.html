@@ -9,8 +9,12 @@
 
 <body>
     <!-- <h1 id="heading"></h1> -->
-    <input type="text" id="input">
-    <button id="submit">Submit</button>
+    <!-- <input type="text" id="input"> -->
+    <!-- <button id="submit">Submit</button> -->
+    <h1 id="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, aliquam?</h1>
+    <h2 class="para"></h2>
+    <h3 class="para"></h3>
+
 
     <script>
         // document.getElementById("heading").innerHTML = "Hello World";
@@ -21,16 +25,23 @@
 
         // result.innerHTML = "This is a para";
 
-        let jigar = document.getElementById("submit");
-        let demo = document.getElementById("input");
+        // let jigar = document.getElementById("submit");
+        // let demo = document.getElementById("input");
 
-        jigar.addEventListener('click', () => {
-            
-            demo.value = "abhi"
-            
-        })
+        // jigar.addEventListener('click', () => {
+
+        //     demo.value = "abhi"
+
+        // })
 
 
+        // let result = document.getElementsByClassName('para')[0].innerHTML;
+
+        // document.getElementsByClassName('para')[2].innerHTML = result;
+
+        let result = document.querySelectorAll('.para')[1];
+
+        result.innerHTML = "hello sir";
     </script>
 </body>
 

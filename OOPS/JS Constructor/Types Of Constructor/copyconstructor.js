@@ -1,0 +1,1 @@
+// JavaScript does not have a built-in copy constructor like some other programming languages. 

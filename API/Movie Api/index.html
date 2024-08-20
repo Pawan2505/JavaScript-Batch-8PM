@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie API</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center">Product List</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Images</th>
+                </tr>
+            </thead>
+            <tbody id="product-list">
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        fetch('https://dummyjson.com/products')
+            .then(res => res.json())
+            .then(data => {
+                const productList = document.getElementById('product-list');
+                data.products.forEach(product => {
+                    const products = document.createElement('tr');
+                    var multiImg = "";
+                    product.images.forEach((image) => {
+                        multiImg += `<img src=${image} alt="" width="50px">`
+                    })
+                    products.innerHTML = `
+                <td><img src="${product.thumbnail}" width="50px"></td>
+                <td>${product.title}</td>
+                <td>${product.description}</td>
+                <td>${product.price}</td>
+                <td>
+                    ${multiImg}
+                </td>`;
+
+                    productList.appendChild(products);
+                });
+            })
+
+    </script>
+</body>
+
+</html>

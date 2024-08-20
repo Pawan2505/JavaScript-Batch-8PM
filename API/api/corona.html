@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID-19 Data</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body onload="ShowApi()">
+    <h1>COVID-19 Data for India</h1>
+    <table id="covidData">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>New Cases</th>
+                <th>Total Cases</th>
+                <th>New Deaths</th>
+                <th>Total Deaths</th>
+                <th>New Recovered</th>
+                <th>Total Recovered</th>
+            </tr>
+        </thead>
+        <tbody id="covidDataBody"></tbody>
+    </table>
+
+    <script>
+        async function ShowApi() {
+            const url = 'https://covid-193.p.rapidapi.com/countries';
+            const options = {
+                method: 'GET',
+                headers: {
+                    'X-RapidAPI-Key': '9df99b8a17msh8888fa7e61fa6d5p193a3ajsn5b3b11a8c9c8',
+                    'X-RapidAPI-Host': 'covid-193.p.rapidapi.com'
+                }
+            };
+
+            // try {
+            //     const response = await fetch(url, options);
+            //     const result = await response.json();
+            //     console.log(result);
+            // } catch (error) {
+            //     console.error(error);
+            // }
+
+
+            try {
+                const response = await fetch(url, options);
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log(data.response)
+                    const {  cases, deaths, tests, day }  = data.response;
+                    console.log(deaths)
+                    const covidDataBody = document.getElementById('covidDataBody');
+                    const newRow = covidDataBody.insertRow();
+                    newRow.innerHTML = `
+                        <td>${day}</td>
+                        <td>${cases}</td>
+                        <td>${deaths.new}</td>
+                        <td>${deaths.total}</td>
+                        <td>${tests.new}</td>
+                        <td>${tests.total}</td>
+                    `;
+                } else {
+                    throw new ('Failed to fetch data');
+                }
+            } catch (error) {
+              console.error(error);
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="save">save</button>
+    <button id="read">read</button>
+    <p id="ack"></p>
+    <script>
+        /// store data in localstorge
+        localStorage.setItem('key', 'value')
+
+        // read data from localstorage
+        localStorage.getItem('key')
+
+        document.querySelector('#save')
+            .addEventListener('click', () => {
+                localStorage.setItem('username', 'jyoti jingar')
+            })
+
+        document.querySelector('#read')
+            .addEventListener('click', () => {
+
+                const result = localStorage.getItem('username')
+                document.querySelector('#ack').innerHTML = result
+            })
+    </script>
+</body>
+
+</html>

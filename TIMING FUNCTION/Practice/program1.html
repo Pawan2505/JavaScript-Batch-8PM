@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .box {
+            margin: 20px;
+        }
+
+        input {
+            width: 50px;
+        }
+
+        #end-date{
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="end-date"></div>
+    <div class="container">
+        <div class="box">
+            <input type="text" value="0">
+            <label for="">Days</label>
+        </div>
+        <div class="box">
+            <input type="text" value="0">
+            <label for="">Hours</label>
+        </div>
+        <div class="box">
+            <input type="text" value="0">
+            <label for="">Munites</label>
+        </div>
+        <div class="box">
+            <input type="text" value="0">
+            <label for="">Seconds</label>
+        </div>
+    </div>
+
+    <script>
+        const endDate = "30 July 2024 08:22:00 PM";
+        document.getElementById('end-date').innerText = endDate;
+
+        let inputs = document.querySelectorAll('input');
+
+        function clock(){
+            const end = new Date(endDate);
+            const now = new Date();
+            const diff = (end-now)/1000;
+
+            if(diff<0) return;
+
+            inputs[0].value = Math.floor(diff/3600/24);
+            inputs[1].value = Math.floor(diff/3600)%24;
+            inputs[2].value = Math.floor(diff/60)%60;
+            inputs[3].value = Math.floor(diff)%60;
+        }
+
+        clock();
+
+        setInterval(()=>{
+            clock();
+        },1000);
+    </script>
+</body>
+
+</html>

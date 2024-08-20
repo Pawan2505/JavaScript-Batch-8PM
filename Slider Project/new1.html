@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 1000px;
+            height: 500px;
+            box-shadow: 0px 0px 0px 5px #f2f2f2;
+            position: relative;
+            margin: auto;
+            margin-top: 100px;
+            overflow: hidden;
+        }
+
+        .slider {
+            position: absolute;
+            transition: all 1s;
+        }
+
+        .btn {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .btn-prev {
+            text-align: center;
+            padding: 10px;
+            margin: 5px;
+            letter-spacing: 2px;
+            font-size: 25px;
+            color: lightcyan;
+            background-color: lightcoral;
+
+        }
+
+        .btn-next {
+
+            padding: 10px;
+            margin: 5px;
+            letter-spacing: 2px;
+            font-size: 25px;
+            color: lightcyan;
+            background-color: lightcoral;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="https://picsum.photos/seed/picsum/1000/500" alt="" class="slider">
+        <img src="https://picsum.photos/1000/500?grayscale" alt="" class="slider">
+        <img src="https://picsum.photos/1000/500/?blur" alt="" class="slider">
+        <img src="https://picsum.photos/id/870/1000/500?grayscale&blur=2" alt="" class="slider">
+        <img src="https://picsum.photos/1000/500" alt="" class="slider">
+    </div>
+    <div class="btn">
+        <button onclick="prev()" class="btn-prev">Prev</button>
+        <button onclick="next()" class="btn-prev">Next</button>
+    </div>
+
+    <script>
+        let slides = document.querySelectorAll('.slider');
+        let count = 0;
+
+
+        slides.forEach((slider, index) => {
+            slider.style.left = `${index * 100}%`
+        })
+
+        function prev() {
+            // count--;
+            count = (count > 0) ? count - 1 : slides.length - 1;
+            slideImage();
+        }
+
+        function next() {
+            // count++;
+            count = (count < slides.length - 1) ? count + 1 : 0;
+            slideImage();
+        }
+
+
+        const slideImage = () => {
+            slides.forEach(
+                (slider) => {
+                    slider.style.transform = `translateX(-${count * 100}%)`;
+                }
+            )
+        }
+
+        setInterval(next, 4000);
+    </script>
+</body>
+
+</html>
